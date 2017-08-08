@@ -65,6 +65,7 @@ openssh:
 
 github: openssh
 	@su $(SUDO_USER) --preserve-environment -c 'ssh-keygen -t rsa -b 4096 -C "$(USERMAIL)"'
+	@echo Adding SSH key to github account...
 	@curl -u "$(GITHUB_USERNAME)" \
     	--data "{\"title\":\"$(HOSTNAME)_`date +%Y%m%d%H%M%S`\",\"key\":\"`cat ~/.ssh/id_rsa.pub`\"}" \
     	https://api.github.com/user/keys
